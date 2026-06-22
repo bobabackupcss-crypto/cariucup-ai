@@ -176,11 +176,18 @@ query:q
 
 const data = await res.json();
 
-document.getElementById("result").innerHTML=
-`
+let output = "";
+
+if(data.answer){
+  output = data.answer.replace(/\n/g,"<br>");
+}else{
+  output = JSON.stringify(data,null,2);
+}
+
+document.getElementById("result").innerHTML = `
 <h2>Jawaban AI</h2>
 <br>
-${data.answer.replace(/\n/g,"<br>")}
+${output}
 `;
 
 document.getElementById("result").style.display="block";
